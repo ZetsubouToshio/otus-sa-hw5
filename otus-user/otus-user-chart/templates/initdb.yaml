@@ -14,19 +14,19 @@ spec:
           - name: DATABASE_URI
             value: "postgresql://otus:otus@postgres/otus"
           - name: DATABASE_NAME
-            value: {{ printf "%s" .Values.postgresql.postgresqlDatabase | b64enc | quote }}  
+            value: {{ printf "%s" .Values.postgresql.postgresqlDatabase | quote }}  
           - name: DATABASE_USER
-            value: {{ printf "%s" .Values.postgresql.postgresqlUsername | b64enc | quote }}  
+            value: {{ printf "%s" .Values.postgresql.postgresqlUsername | quote }}  
           - name: DATABASE_PASSWORD
-            value: {{ printf "%s" .Values.postgresql.postgresqlPassword | b64enc | quote }}    
+            value: {{ printf "%s" .Values.postgresql.postgresqlPassword | quote }}    
         image: postgres:latest
         command:
           - sh
           - "-c"
           - |
             psql $DATABASE_URI <<'EOF'
-              SELECT 'CREATE DATABASE $DATABASE_NAME'
-                WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '$DATABASE_NAME')\gexec;
+              SELECT \'CREATE DATABASE $DATABASE_NAME\'
+                WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = \'$DATABASE_NAME\')\gexec;
                 create user $DATABASE_USER with encrypted password '$DATABASE_PASSWORD';
               grant all privileges on database $DATABASE_NAME to $DATABASE_USER;
             EOF
