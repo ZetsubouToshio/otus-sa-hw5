@@ -1,9 +1,9 @@
 enabled: true
   
 fullnameOverride: postgres
-postgresqlUsername: postgres
-postgresqlPassword: postgres
-postgresqlDatabase: postgres
+postgresqlUsername: otus
+postgresqlPassword: otus
+postgresqlDatabase: otus
 
 service:
   type: LoadBalancer
