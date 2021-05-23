@@ -9,3 +9,5 @@ service:
 
 host:
 routePrefix:
+
+fullnameOverride: otus-user
