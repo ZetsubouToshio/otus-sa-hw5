@@ -1,6 +1,3 @@
 # Api Gateway
 Helm-chart для разворачивания api-gateway. 
-
-## Старт
-```helm install otus-demo ./otus-demo-chart -f values.yaml```
-
+Зависит от сервиса auth, ходит в сервисы auth и user

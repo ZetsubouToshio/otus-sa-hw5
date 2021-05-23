@@ -35,6 +35,17 @@ Backend for frontends. Apigateway
 ```
 kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 ```
+## Добавить репозитории helm
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+```
+## Создать неймспейс
+```
+kubectl create namespace otus
+kubectl config set-context --current --namespace=otus
+```
 
 # Порядок установки
 * postgres
