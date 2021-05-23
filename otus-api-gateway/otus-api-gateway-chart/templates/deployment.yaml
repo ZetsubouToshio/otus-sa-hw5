@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "otus-demo-chart.fullname" . }}
+  name: {{ include "otus-api-gateway-chart.fullname" . }}
   labels:
-    {{- include "otus-demo-chart.labels" . | nindent 4 }}
+    {{- include "otus-api-gateway-chart.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "otus-demo-chart.selectorLabels" . | nindent 6 }}
+      {{- include "otus-api-gateway-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "otus-demo-chart.selectorLabels" . | nindent 8 }}
+        {{- include "otus-api-gateway-chart.selectorLabels" . | nindent 8 }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
     spec:
@@ -24,21 +24,10 @@ spec:
               containerPort: 8000
               protocol: TCP
           env:
-            - name: DATASOURCE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: otus-demo-secret
-                  key: DATASOURCE_URL
-            - name: DATASOURCE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: otus-demo-secret
-                  key: DATASOURCE_USERNAME
-            - name: DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: otus-demo-secret
-                  key: DATASOURCE_PASSWORD      
+            - name: USER_URL
+              value: {{ .Values.services.user.url }}
+            - name: AUTH_URL
+              value: {{ .Values.services.auth.url }}
           livenessProbe:
             httpGet:
               port: 8000

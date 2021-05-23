@@ -8,3 +8,8 @@ metrics:
   serviceMonitor:
     enabled: true
 
+services:
+  user:
+    url: http://otus-user:9000
+  auth:
+    url: http://otus-auth:9000
