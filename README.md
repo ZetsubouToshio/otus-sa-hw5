@@ -45,17 +45,20 @@ kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 
 ## postgres
 ```
-helm install postgres bitnami/postgresql -f ./postgres/values.yaml
+helm install postgres bitnami/postgresql -f ./postgres/values.yaml -n otus
 ```
 
 ## otus-auth
+```
+helm install otus-user ./otus-auth/otus-auth-chart -f ./otus-auth/values.yaml -n otus
+```
 ## otus-user
 ```
-helm install otus-user ./otus-user/otus-user-chart -f ./otus-user/values.yaml
+helm install otus-user ./otus-user/otus-user-chart -f ./otus-user/values.yaml -n otus
 ```
 ## otus-api-gateway
 ```
-helm install otus-api-gateway ./otus-api-gateway/otus-api-gateway-chart -f ./otus-api-gateway/values.yaml
+helm install otus-api-gateway ./otus-api-gateway/otus-api-gateway-chart -f ./otus-api-gateway/values.yaml -n otus
 ```
 ## nginx-ingress
 
