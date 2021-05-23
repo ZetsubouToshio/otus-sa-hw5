@@ -1,0 +1,14 @@
+enabled: true
+  
+fullnameOverride: postgres
+postgresqlUsername: postgres
+postgresqlPassword: postgres
+postgresqlDatabase: postgres
+
+service:
+  type: LoadBalancer
+  port: "5432"
+
+persistance:
+  enabled: true
+  size: 1Gi

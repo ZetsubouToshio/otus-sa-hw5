@@ -1,0 +1,11 @@
+replicaCount: 2
+
+image:
+  repository: 
+
+service:
+  type: NodePort
+  port: 9000
+
+host:
+routePrefix:

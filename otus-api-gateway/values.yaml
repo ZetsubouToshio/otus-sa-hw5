@@ -1,0 +1,10 @@
+image:
+  repository: zetsuboutoshio/otus-api-gateway
+
+host: arch.homework
+routePrefix: /api
+
+metrics:
+  serviceMonitor:
+    enabled: true
+

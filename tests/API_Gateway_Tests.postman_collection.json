@@ -1,0 +1,404 @@
+{
+	"info": {
+		"_postman_id": "cdd2ead8-4f2a-4149-80e3-ba177dda5e75",
+		"name": "API Gateway Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Регистрация пользователя 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"User Registered\", () => {",
+							"  var responseJSON = JSON.parse(responseBody)",
+							"  var created = responseJSON[\"created\"]",
+							"",
+							"  pm.expect(created).to.eq(true)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"johndoe583\",\n    \"password\": \"verysecuredpassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api//register",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Логин пользователем 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody)",
+							"pm.collectionVariables.set(\"accessToken1\", responseJSON[\"accessToken\"])",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"johndoe583\",\n    \"password\": \"verysecuredpassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Заполнить информацию о пользователе 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"bestjohn@doe.com\",\n  \"phone\": \"+71002003040\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api//user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Изменить информацию о пользователе 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken1}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"bestjohn@doe.com\",\n  \"phone\": \"+123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api//user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получить данные пользвателя 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken1}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api//user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Регистрация пользователя 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"User Registered\", () => {",
+							"  var responseJSON = JSON.parse(responseBody)",
+							"  var created = responseJSON[\"created\"]",
+							"",
+							"  pm.expect(created).to.eq(true)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"joandoe583\",\n    \"password\": \"verysecuredpassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api//register",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Логин пользователем 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody)",
+							"pm.collectionVariables.set(\"accessToken2\", responseJSON[\"accessToken\"])",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"joandoe583\",\n    \"password\": \"verysecuredpassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api//login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Попытка запроса данных пользователя с отредактиванным JWT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Access Forbidden\", () => {",
+							"  pm.response.to.have.status(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJraWQiOiIwOTFjY2Q0OS1jMDVjLTQ1ODAtODVkYy00NDMwZjAyYTA5YzgiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJqb2FuZG9lNTgzIiwiZXhwIjoxNjIxODA2NTE5LCJpYXQiOjE2MjE3MjAxMTksInVzZXJJZCI6IjgzNDYzNWE0LTYzYjEtNGNlOS1iMGU3LWI1MWE0MDRhYTNlOSJ9.Mu8oF8YmCv067oXvV7Fyl8o4mPnL2WYQe-z0P1XCyJWUhfFFBsToQ3DpJ-LZctRAveykJW9F0B699flqaopXxPjKRGMwYm7j0LclULUlqJSyoJNp4AxlBZfywmuk5YIMYe0aMVw4IXV00Qcwf58CT9INZFnsnuzBHu7gaqZB0rP6sGdPY5TYif5vqLSWcZxeSAsS_7WiOiARsCUk_82PxcPgGLZHSgq7JztMxe5ezLQhgYQuaZ-1dsKV7YWlGJxPivOFrAVYu1Sm55ZOEv6PCEJVy0aH4CzMaZ2aTLfwG77Jdj54qwi63KMkiBn6-t1OgnhAgcxui65cz4O9tE4tBM0qohQ86pK68LVLv5GX9-Y5VmYvV_2yWTOFrMEgz08RYLsjrMtUmjh3SVsjvTej0RplK6PIgJiBtg0TMJrp7PDupgKGbKRQ_sOvbvFbECw-dpllJsjonGvbAOmQzEO4LUWbfm2ft2Xh7crPQZAAN4M12yy5jVsGB4kV1al8n7eGDXJr5HIDIKQ5lWLTamQpMWy5H-3bM2a6TTXvaa0mpWJy_9tO12Dz4cK8wSf57hy1kjOx-t91WLKTJOPNnZjHy4cgDFBiCAB8xkZ1VROzkex1-G9tz7M5PXSVSDp8QUusFJQATH95pnJ4-HAfFcLPFyU2Y1AqmbDTKGldi6F6Vd8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api//user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "arch.homework"
+		},
+		{
+			"key": "userId",
+			"value": ""
+		},
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "accessToken1",
+			"value": ""
+		},
+		{
+			"key": "accessToken2",
+			"value": ""
+		}
+	]
+}
