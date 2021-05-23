@@ -30,14 +30,14 @@ spec:
               value: {{ .Values.services.auth.url }}
           livenessProbe:
             httpGet:
-              port: 8000
+              port: 8080
               path: /actuator/health
             initialDelaySeconds: 120
             periodSeconds: 5
             timeoutSeconds: 2
           readinessProbe:
             httpGet:
-              port: 8000
+              port: 8080
               path: /actuator/health
             initialDelaySeconds: 120
             periodSeconds: 5

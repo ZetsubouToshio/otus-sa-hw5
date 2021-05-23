@@ -41,14 +41,14 @@ spec:
                   key: DATASOURCE_PASSWORD      
           livenessProbe:
             httpGet:
-              port: 8000
+              port: 8001
               path: /actuator/health
             initialDelaySeconds: 120
             periodSeconds: 5
             timeoutSeconds: 2
           readinessProbe:
             httpGet:
-              port: 8000
+              port: 8001
               path: /actuator/health
             initialDelaySeconds: 120
             periodSeconds: 5
