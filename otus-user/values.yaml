@@ -2,6 +2,8 @@ image:
   repository: zetsuboutoshio/otus-user
 
 postgresql:
+  service:
+    port: 5432
   postgresqlDatabase: otus_user
   postgresqlUsername: otus_user
   postgresqlPassword: otus_user
