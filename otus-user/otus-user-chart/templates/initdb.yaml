@@ -27,7 +27,7 @@ spec:
             psql $DATABASE_URI <<'EOF'
               SELECT \'CREATE DATABASE $DATABASE_NAME\'
                 WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = \'$DATABASE_NAME\')\gexec;
-                create user $DATABASE_USER with encrypted password '$DATABASE_PASSWORD';
-              grant all privileges on database $DATABASE_NAME to $DATABASE_USER;
+                create user \'$DATABASE_USER\' with encrypted password \'$DATABASE_PASSWORD\';
+              grant all privileges on database \'$DATABASE_NAME\' to \'$DATABASE_USER\';
             EOF
   backoffLimit: 2
