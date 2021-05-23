@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: otus-auth-initdb
+spec:
+  template:
+    metadata:
+      name: otus-auth-initdb
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: create-db-job
+        env:
+          - name: DATABASE_NAME
+            value: {{ printf "%s" .Values.postgresql.postgresqlDatabase | quote }}  
+          - name: DATABASE_USER
+            value: {{ printf "%s" .Values.postgresql.postgresqlUsername | quote }}  
+          - name: DATABASE_PASSWORD
+            value: {{ printf "%s" .Values.postgresql.postgresqlPassword | quote }}
+          - name: DATABASE_URI
+            value: "postgresql://$(DATABASE_USER):$(DATABASE_PASSWORD)@postgres/otus"
+        image: postgres:latest
+        command:
+          - sh
+          - "-c"
+          - |
+            psql $(DATABASE_URI) <<'EOF'
+              SELECT 'CREATE DATABASE $(DATABASE_NAME);'
+                WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '$(DATABASE_NAME)')\gexec
+            EOF
+  backoffLimit: 2

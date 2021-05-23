@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "otus-demo-chart.name" -}}
+{{- define "otus-auth-chart.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "otus-demo-chart.fullname" -}}
+{{- define "otus-auth-chart.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "otus-demo-chart.chart" -}}
+{{- define "otus-auth-chart.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "otus-demo-chart.labels" -}}
-helm.sh/chart: {{ include "otus-demo-chart.chart" . }}
-{{ include "otus-demo-chart.selectorLabels" . }}
+{{- define "otus-auth-chart.labels" -}}
+helm.sh/chart: {{ include "otus-auth-chart.chart" . }}
+{{ include "otus-auth-chart.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "otus-demo-chart.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "otus-demo-chart.name" . }}
+{{- define "otus-auth-chart.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "otus-auth-chart.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "otus-demo-chart.serviceAccountName" -}}
+{{- define "otus-auth-chart.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "otus-demo-chart.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "otus-auth-chart.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
