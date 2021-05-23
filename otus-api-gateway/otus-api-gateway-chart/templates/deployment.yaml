@@ -13,8 +13,6 @@ spec:
     metadata:
       labels:
         {{- include "otus-api-gateway-chart.selectorLabels" . | nindent 8 }}
-      annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
