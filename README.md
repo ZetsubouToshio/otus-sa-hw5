@@ -43,6 +43,10 @@ kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 * otus-api-gateway
 * nginx-ingress
 
+## nginx-ingress
+```
+helm install nginx ingress-nginx/ingress-nginx -f ./nginx-ingress/values.yaml --atomic -n otus
+```
 ## postgres
 ```
 helm install postgres bitnami/postgresql -f ./postgres/values.yaml -n otus
@@ -58,10 +62,6 @@ helm install otus-user ./otus-user/otus-user-chart -f ./otus-user/values.yaml -n
 ## otus-api-gateway
 ```
 helm install otus-api-gateway ./otus-api-gateway/otus-api-gateway-chart -f ./otus-api-gateway/values.yaml -n otus
-```
-## nginx-ingress
-```
-helm install nginx ingress-nginx/ingress-nginx -f ./nginx-ingress/values.yaml --atomic -n otus
 ```
 # Api-тесты из Postman 
 Предварительно необходимо изменить хост arch.homework на ip ingress'а или изменить дефолтный в user_api_postman_collection.json
