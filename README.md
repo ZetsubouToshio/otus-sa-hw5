@@ -50,9 +50,9 @@ helm install postgres bitnami/postgresql -f ./postgres/values.yaml
 
 ## otus-auth
 ## otus-user
-
-
-
+```
+helm install otus-user ./otus-user/otus-user-chart -f ./otus-user/values.yaml
+```
 ## otus-api-gateway
 ```
 helm install otus-api-gateway ./otus-api-gateway/otus-api-gateway-chart -f ./otus-api-gateway/values.yaml
