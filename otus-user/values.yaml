@@ -1,3 +1,7 @@
 image:
   repository: zetsuboutoshio/otus-user
 
+postgresql:
+  postgresqlDatabase: otus_user
+  postgresqlUsername: otus_user
+  postgresqlPassword: otus_user
