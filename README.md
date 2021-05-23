@@ -60,11 +60,11 @@ kubectl config set-context --current --namespace=otus
 ```
 
 # Порядок установки
+* nginx-ingress
 * postgres
 * otus-auth
 * otus-user
 * otus-api-gateway
-* nginx-ingress
 
 ## nginx-ingress
 ```
