@@ -3,7 +3,7 @@ image:
 
 postgresql:
   service:
-    port: 5432
+    port: "5432"
   postgresqlDatabase: otus_user
   postgresqlUsername: otus
   postgresqlPassword: otus
